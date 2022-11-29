@@ -16,13 +16,13 @@ def parse_args(args):
         "--train-data",
         type=str,
         default=None,
-        help="Path to csv filewith training data",
+        help="Path to file(s) with training data",
     )
     parser.add_argument(
         "--val-data",
         type=str,
         default=None,
-        help="Path to csv file with validation data",
+        help="Path to file(s) with validation data",
     )
     parser.add_argument(
         "--train-num-samples",
@@ -267,7 +267,7 @@ def parse_args(args):
         "--copy-codebase",
         default=False,
         action="store_true",
-        help="If true, we copy the entire base on the log diretory, and execute from there."
+        help="If true, we copy the entire base on the log directory, and execute from there."
     )
     parser.add_argument(
         "--horovod",
