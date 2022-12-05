@@ -33,12 +33,26 @@ class Jetimagedataset(Dataset):
 
 
 class DataManager():
-    def __init__(self, data_config="QCD1", transform=None, QCD_bg=True):
+    def __init__(self, data_config="QCD1f", transform=None, QCD_bg=True):
         # Class that manages the data of an experiment and loads it when needed. Modify it when needed
-        if data_config == "QCD1":
+        if data_config == "QCD1f":
             self.bg_dataset = Jetimagedataset(
                 transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xtra-100KQCD-pre3-2.pickle")
-            self.train_set, self.val_set, self.test_bg = torch.utils.data.random_split(
-                self.bg_dataset, [80000, 10000, 10000])
+            self.train_set = self.bg_dataset
+            self.val_set = Jetimagedataset(
+                transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xval-40KQCD-pre3-2.pickle")
+            self.test_bg = Jetimagedataset(
+                transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xtes-40KQCD-pre3-2.pickle")
             self.test_sg = Jetimagedataset(
+                transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xtes-40Ktop-pre3-2.pickle")
+
+        if data_config == "top1f":
+            self.bg_dataset = Jetimagedataset(
                 transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xtra-100Ktop-pre3-2.pickle")
+            self.train_set = self.bg_dataset
+            self.val_set = Jetimagedataset(
+                transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xval-40Ktop-pre3-2.pickle")
+            self.test_bg = Jetimagedataset(
+                transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xtes-40Ktop-pre3-2.pickle")
+            self.test_sg = Jetimagedataset(
+                transform=transform, path="/mnt/c/WORK/DATA/jet_images/Xtes-40KQCD-pre3-2.pickle")
