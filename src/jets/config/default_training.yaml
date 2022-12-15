@@ -1,0 +1,4 @@
+data_config: "QCD1f"
+batch_size: 64 #256
+latent_dims: 10
+epochs: 10
